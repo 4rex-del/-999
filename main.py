@@ -72,7 +72,7 @@ class MainMenu(discord.ui.View):
     def __init__(self):
         super().__init__(timeout=None)
 
-    @discord.ui.button(label="ดูราคายศ", style=discord.ButtonStyle.primary, emoji=":emoji_145:")
+    @discord.ui.button(label="ดูราคายศ", style=discord.ButtonStyle.primary, emoji="🛒")
     async def show_price(self, interaction: discord.Interaction, button: discord.ui.Button):
         embed = discord.Embed(title="💎 ราคายศทั้งหมด", color=discord.Color.blue())
         for role_id, price in ROLES_FOR_SALE.items():
@@ -81,7 +81,7 @@ class MainMenu(discord.ui.View):
                 embed.add_field(name=role.name, value=f"{price} Points", inline=False)
         await interaction.response.send_message(embed=embed, ephemeral=True)
 
-    @discord.ui.button(label="ซื้อยศ", style=discord.ButtonStyle.success, emoji=":86:")
+    @discord.ui.button(label="ซื้อยศ", style=discord.ButtonStyle.success, emoji="💸")
     async def buy_role(self, interaction: discord.Interaction, button: discord.ui.Button):
         user_id = interaction.user.id
         points = user_points.get(user_id, 0)
@@ -120,13 +120,13 @@ class MainMenu(discord.ui.View):
         view.add_item(select)
         await interaction.response.send_message("เลือกยศที่คุณต้องการซื้อ:", view=view, ephemeral=True)
 
-    @discord.ui.button(label="เช็คจำนวน Point", style=discord.ButtonStyle.secondary, emoji=":emoji_139~1:")
+    @discord.ui.button(label="เช็คจำนวน Point", style=discord.ButtonStyle.secondary, emoji="📃")
     async def check_points(self, interaction: discord.Interaction, button: discord.ui.Button):
         user_id = interaction.user.id
         points = user_points.get(user_id, 0)
         await interaction.response.send_message(f"💰 คุณมี {points} Points", ephemeral=True)
 
-    @discord.ui.button(label="เติมเงิน", style=discord.ButtonStyle.danger, emoji=":emoji_122~2:")
+    @discord.ui.button(label="เติมเงิน", style=discord.ButtonStyle.danger, emoji="🧧")
     async def topup(self, interaction: discord.Interaction, button: discord.ui.Button):
         await interaction.response.send_modal(TopupModal())
 
@@ -188,3 +188,4 @@ server_on()
 
 
 bot.run(os.getenv('TOKEN'))
+
