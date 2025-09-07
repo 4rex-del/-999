@@ -176,11 +176,13 @@ async def on_ready():
     if channel:
         embed = discord.Embed(
             title="🛒 ซื้อยศ",
-            description="เลือกยศที่ต้องการ 100 Points = 1บาท",
+            description="เลือกยศที่ต้องการ 1 Points = 1บาท",
+            description="ซื้อยศได้ตลอด 24 ชั่วโมง",
+            description="หาก points ไม่เข้าติดต่อแอดมิน!",
             color=discord.Color.green()
         )
         embed.set_image(
-            url="https://media.discordapp.net/attachments/1411575487096164522/1411580378254147704/1276_20250831121606.png"
+            url="https://media.discordapp.net/attachments/1414140348468559922/1414160989804302456/1240_20250907150943.png?ex=68be8f8d&is=68bd3e0d&hm=9f92ce6e20a89eee259ac8efbe84cf1699f42ab4531f88b1f59b64509473f03f&=&format=webp&quality=lossless&width=770&height=577"
         )
         await channel.send(embed=embed, view=MainMenu())
 
@@ -188,4 +190,5 @@ server_on()
 
 
 bot.run(os.getenv('TOKEN'))
+
 
