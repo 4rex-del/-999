@@ -72,7 +72,7 @@ class MainMenu(discord.ui.View):
     def __init__(self):
         super().__init__(timeout=None)
 
-    @discord.ui.button(label="ดูราคายศ", style=discord.ButtonStyle.primary)
+    @discord.ui.button(label="ดูราคายศ", style=discord.ButtonStyle.primary, emoji=":emoji_145:")
     async def show_price(self, interaction: discord.Interaction, button: discord.ui.Button):
         embed = discord.Embed(title="💎 ราคายศทั้งหมด", color=discord.Color.blue())
         for role_id, price in ROLES_FOR_SALE.items():
@@ -81,7 +81,7 @@ class MainMenu(discord.ui.View):
                 embed.add_field(name=role.name, value=f"{price} Points", inline=False)
         await interaction.response.send_message(embed=embed, ephemeral=True)
 
-    @discord.ui.button(label="ซื้อยศ", style=discord.ButtonStyle.success)
+    @discord.ui.button(label="ซื้อยศ", style=discord.ButtonStyle.success, emoji=":86:")
     async def buy_role(self, interaction: discord.Interaction, button: discord.ui.Button):
         user_id = interaction.user.id
         points = user_points.get(user_id, 0)
@@ -120,13 +120,13 @@ class MainMenu(discord.ui.View):
         view.add_item(select)
         await interaction.response.send_message("เลือกยศที่คุณต้องการซื้อ:", view=view, ephemeral=True)
 
-    @discord.ui.button(label="เช็คจำนวน Point", style=discord.ButtonStyle.secondary)
+    @discord.ui.button(label="เช็คจำนวน Point", style=discord.ButtonStyle.secondary, emoji=":emoji_139~1:")
     async def check_points(self, interaction: discord.Interaction, button: discord.ui.Button):
         user_id = interaction.user.id
         points = user_points.get(user_id, 0)
         await interaction.response.send_message(f"💰 คุณมี {points} Points", ephemeral=True)
 
-    @discord.ui.button(label="เติมเงิน", style=discord.ButtonStyle.danger)
+    @discord.ui.button(label="เติมเงิน", style=discord.ButtonStyle.danger, emoji=":emoji_122~2:")
     async def topup(self, interaction: discord.Interaction, button: discord.ui.Button):
         await interaction.response.send_modal(TopupModal())
 
@@ -175,7 +175,7 @@ async def on_ready():
     channel = bot.get_channel(TARGET_CHANNEL_ID)
     if channel:
         embed = discord.Embed(
-            title="🛒 ขายยศ",
+            title="🛒 ซื้อยศ",
             description="เลือกยศที่ต้องการ 100 Points = 1บาท",
             color=discord.Color.green()
         )
@@ -185,5 +185,6 @@ async def on_ready():
         await channel.send(embed=embed, view=MainMenu())
 
 server_on()
+
 
 bot.run(os.getenv('TOKEN'))
